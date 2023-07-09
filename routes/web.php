@@ -32,5 +32,9 @@ Route::post('Usuarios', [UsuariosController::class, 'store']);
 Route::get('Eliminar-Usuario/{id}', [UsuariosController::class, 'destroy']);
 Route::get('Editar-Usuario/{id}', [UsuariosController::class, 'edit']);
 Route::put('actualizar-Usuario/{id}', [UsuariosController::class, 'update']);
+
 Route::get('Proveedores', [ClientesController::class, 'index']);
 Route::post('Proveedores', [ClientesController::class, 'store']);
+Route::get('Editar-Proveedor/{id}', [ClientesController::class, 'edit']);
+Route::put('actualizarP/{id}', [ClientesController::class, 'update']);
+Route::get('Eliminar-Proveedor/{id}', [ClientesController::class, 'destroy']);

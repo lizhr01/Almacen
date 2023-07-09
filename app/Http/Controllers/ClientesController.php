@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Clientes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClientesController extends Controller
 {
@@ -40,35 +41,30 @@ class ClientesController extends Controller
         return redirect('Proveedores')->with('ClienteCreado', 'OK');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Clientes $clientes)
+   
+    public function edit($cli)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Clientes $clientes)
-    {
-        //
+        $cli = Clientes::find($cli);
+        $clientes =Clientes::all();
+        return view('modulos.Clientes', compact('cli', 'clientes'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Clientes $clientes)
+    public function update(Request $request,$id)
     {
-        //
+        $datos = request();
+        DB::table('clientes')->where('id', $id)->update(['nombre'=>$datos["nombre"], 'documento'=>$datos["documento"], 'fechaNac'=>$datos["fechaNac"], 'telefono'=>$datos["telefono"], 'direccion'=>$datos["direccion"]]);
+        return redirect('Proveedores')->with('ClienteActualizado', 'OK');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Clientes $clientes)
+    public function destroy($id)
     {
-        //
+        Clientes::destroy($id);
+        return redirect('Proveedores');
     }
 }

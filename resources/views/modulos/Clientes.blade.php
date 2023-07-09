@@ -32,8 +32,11 @@
                             <td>{{ $c->direccion }}</td>
                             <td>{{ $c->telefono }}</td>
                             <td>
-                                <button class="btn btn-success"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                <a href="{{ url('Editar-Proveedor/'.$c->id) }}">
+                                    <button class="btn btn-success"><i class="fa fa-pencil"></i></button>
+                                </a>
+                                
+                                <button class="btn btn-danger EliminarProveedor" Cid="{{ $c->id }}" Cliente="{{ $c->nombre }}"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                         @endforeach
@@ -81,4 +84,47 @@
         </div>
     </div>
 </div>  
+<?php
+    $exp = explode('/', $_SERVER["REQUEST_URI"]);
+?>
+@if($exp[3] == "Editar-Proveedor")
+<div class="modal fade" id="EditarProveedor">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{ url('actualizarP/'.$cli->id) }}" method="post">
+                @csrf
+                @method('put')
+                <div class="modal-body">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <h2>Nombre:</h2>
+                            <input type="text" class="form-control input-lg" name="nombre" required="" value="{{ $cli->nombre }}">
+                        </div>
+                        <div class="form-group">
+                            <h2>Documento:</h2>
+                            <input type="text" class="form-control input-lg" name="documento" required="" value="{{ $cli->documento }}">
+                        </div>
+                        <div class="form-group">
+                            <h2>Fecha de Nacimiento:</h2>
+                            <input type="text" class="form-control input-lg" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask name="fechaNac" required="" value="{{ $cli->fechaNac }}">
+                        </div>
+                        <div class="form-group">
+                            <h2>Direccion:</h2>
+                            <input type="text" class="form-control input-lg" name="direccion" required="" value="{{ $cli->direccion }}">
+                        </div>
+                        <div class="form-group">
+                            <h2>Teléfono:</h2>
+                            <input type="text" class="form-control input-lg" data-inputmask="'mask': '+(99) 999 999 999'" data-mask name="telefono" required="" value="{{ $cli->telefono }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>  
+@endif
 @endsection

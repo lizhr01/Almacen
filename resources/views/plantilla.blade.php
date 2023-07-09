@@ -155,7 +155,30 @@
               window.location = "Eliminar-Usuario/"+Uid;
           }
       })
-  })
+  });
+
+  $('.table').on('click','.EliminarProveedor',function(){
+      
+      var Cid = $(this).attr('Cid');
+      var Cliente = $(this).attr('Cliente');
+
+      Swal.fire({
+
+          title: '¿Seguro que Desea Eliminar el Proveedor: '+Cliente+'?',
+          icon: 'warning',
+          showCancelButton: true,
+          cancelButtonText: 'Cancelar',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Eliminar',
+          confirmButtonColor: '#3085d6'
+
+      }).then((result) => {
+
+          if(result.isConfirmed){
+              window.location = "Eliminar-Proveedor/"+Cid;
+          }
+      })
+  });
 
   $('[data-mask]').inputmask();
 </script>
@@ -176,6 +199,14 @@
             'success'
         )
     </script>
+@elseif(session('ClienteActualizado') == 'OK')
+    <script type="text/javascript">
+        Swal.fire(
+            'El Proveedor ha Sido Actualizado',
+            '',
+            'success'
+        )
+    </script>
 @endif
 
 <?php
@@ -188,6 +219,14 @@ $exp = explode('/', $_SERVER["REQUEST_URI"]);
             $('#EditarUsuario').modal('toggle');
         })
     </script>
+
+@elseif($exp[3] == 'Editar-Proveedor')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#EditarProveedor').modal('toggle');
+        })
+    </script>
+
 @endif
 
 </body>
