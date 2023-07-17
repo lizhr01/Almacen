@@ -24,7 +24,33 @@
         </li>
 
         <li>
-          <a href="{{ url('Orden de compra') }}">
+
+            <a href="{{ url('Productos') }}">
+              <i class="fa fa-list-ul"></i>
+              <span>Inventario</span>
+            </a>
+<!-- 
+            <ul class="treeview-menu">
+
+              <li>
+                <a href="{{ url('Proveedores') }}">
+                  <i class="fa fa-users"></i>
+                  <span>Productos</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{ url('Proveedores') }}">
+                  <i class="fa fa-users"></i>
+                  <span>Proveedores</span>
+                </a>
+              </li>
+              
+            </ul> -->
+          
+        </li>
+
+        <li>
+          <a href="{{ url('Pedidos') }}">
             <i class="fa fa-users"></i>
             <span>Orden de compra</span>
           </a>

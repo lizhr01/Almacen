@@ -32,6 +32,7 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="http://localhost/Almac%c3%a9n/public/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="http://localhost/Almac%c3%a9n/public/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
+  <link rel="stylesheet" href="http://localhost/Almac%c3%a9n/public/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -105,11 +106,16 @@
 <script src="http://localhost/Almac%c3%a9n/public/bower_components/input-mask/jquery.inputmask.js"></script>
 <script src="http://localhost/Almac%c3%a9n/public/bower_components/input-mask/jquery.inputmask.date.extensions.js"></script>
 <script src="http://localhost/Almac%c3%a9n/public/bower_components/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="http://localhost/Almac%c3%a9n/public/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script type="text/javascript">
   $('.sidebar-menu').tree();
+
+  $('.date1').datepicker({
+    autoclose: true
+  });
 
   $(".DT1").DataTable({
   
@@ -179,6 +185,27 @@
           }
       })
   });
+  $('.table').on('click','.QuitarProducto',function(){
+      
+      var Lid = $(this).attr('Lid');
+
+      Swal.fire({
+
+          title: '¿Seguro que Desea Eliminar el Producto?',
+          icon: 'warning',
+          showCancelButton: true,
+          cancelButtonText: 'Cancelar',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Eliminar',
+          confirmButtonColor: '#3085d6'
+
+      }).then((result) => {
+
+          if(result.isConfirmed){
+              window.location = "Producto-Q/"+Lid;
+          }
+      })
+  });
 
   $('[data-mask]').inputmask();
 </script>
@@ -207,6 +234,14 @@
             'success'
         )
     </script>
+@elseif(session('ProductoCreado') == 'OK')
+    <script type="text/javascript">
+        Swal.fire(
+            'El Producto ha Sido Agregado Correctamente',
+            '',
+            'success'
+        )
+    </script>
 @endif
 
 <?php
@@ -226,7 +261,12 @@ $exp = explode('/', $_SERVER["REQUEST_URI"]);
             $('#EditarProveedor').modal('toggle');
         })
     </script>
-
+@elseif($exp[3] == 'Producto-E')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#EditarProducto').modal('toggle');
+        })
+    </script>
 @endif
 
 </body>

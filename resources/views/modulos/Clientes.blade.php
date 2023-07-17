@@ -16,7 +16,7 @@
                     <thead>
                         <tr>
                             <th>Proveedor</th>
-                            <th>Documento</th>
+                            <th>DNI</th>
                             <th>Fecha de nacimiento</th>
                             <th>Dirección</th>
                             <th>Teléfono</th>
@@ -59,7 +59,7 @@
                             <input type="text" class="form-control input-lg" name="nombre" required="">
                         </div>
                         <div class="form-group">
-                            <h2>Documento:</h2>
+                            <h2>DNI:</h2>
                             <input type="text" class="form-control input-lg" name="documento" required="">
                         </div>
                         <div class="form-group">
@@ -101,7 +101,7 @@
                             <input type="text" class="form-control input-lg" name="nombre" required="" value="{{ $cli->nombre }}">
                         </div>
                         <div class="form-group">
-                            <h2>Documento:</h2>
+                            <h2>DNI:</h2>
                             <input type="text" class="form-control input-lg" name="documento" required="" value="{{ $cli->documento }}">
                         </div>
                         <div class="form-group">

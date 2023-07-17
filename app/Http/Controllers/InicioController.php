@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inicio;
+use App\Models\Producto;
+use App\Models\Pedidos;
+
 use Illuminate\Http\Request;
 
 class InicioController extends Controller
@@ -13,7 +16,9 @@ class InicioController extends Controller
     }
     public function index()
     {
-        return view('modulos.Inicio');
+        $ventas = Pedidos::all()->where('estadoE', 'Recibido');
+        $producto = Producto::all();
+        return view('modulos.Inicio', compact('ventas', 'producto'));
     }
 
     /**
